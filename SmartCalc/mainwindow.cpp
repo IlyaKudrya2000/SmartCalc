@@ -270,43 +270,14 @@ void MainWindow::on_pushButton_26_clicked() {
   for (X = xBegin; X <= xEnd; X += h) {
       QString tmpQ = QString::number(X);
       inputt.replace('x', '(' + tmpQ + ')');
-
-
-//      tmp = inputt.toStdString();
-
-
-//      Ctmp = str.c_str();
-//      tmp = Ctmp;
-
-          for (int i = 0; i < inputt.length() + 1; i++) {
-            tmp[i] = inputt.toStdString().c_str()[i];
-          }
-          inputt = cerr;
-//          inputt.toLocal16Bit().data();
-//    for (int i = 0; i < inputt.length() + 1; i++) {
-//      c[i] = inputt.toStdString().c_str()[i];
-//    }
-
-//    for (unsigned long i = 0; i < strlen(c); i++) {
-//      if (c[i] == 'x' || c[i] == 'X') {
-//        cerr = inputt.left(i);
-//        cerr += '(';
-//        cerr += QString::number(X, 'f', 7);
-//        cerr += ')';
-//        cerr += inputt.mid(i + 1);
-//        inputt = cerr;
-//        for (int i = 0; i < inputt.length() + 1; i++) {
-//          c[i] = inputt.toStdString().c_str()[i];
-//        }
-//      }
-//    }
-//    for (int i = 0; i < cerr.length() + 1; i++) {
-//      tmp[i] = cerr.toStdString().c_str()[i];
-//    }
-    double readtemp = 0;
-    preRead(tmp,&readtemp);
-    x.push_back(X);
-    y.push_back(readtemp);
+      for (int i = 0; i < inputt.length() + 1; i++) {
+        tmp[i] = inputt.toStdString().c_str()[i];
+      }
+      inputt = cerr;
+      double readtemp = 0;
+      preRead(tmp,&readtemp);
+      x.push_back(X);
+      y.push_back(readtemp);
   }
   ui->widget->addGraph();
   ui->widget->graph(0)->setData(x, y);
