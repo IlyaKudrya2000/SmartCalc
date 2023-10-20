@@ -1,3 +1,5 @@
+# SmartCalc v1.0
+
 ## Contents
 
 1. [Реализация SmartCalc v1.0](#реализация-smartcalc-v10)
