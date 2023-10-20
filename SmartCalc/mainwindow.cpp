@@ -19,7 +19,11 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_lineEdit_textEdited(const QString& arg1) {
+
     inputt = arg1;
+    inputt = inputt.simplified();
+    inputt.replace( " ", "" );
+
 }
 void MainWindow::on_pushButton_clicked()
 {
@@ -260,23 +264,45 @@ void MainWindow::on_pushButton_26_clicked() {
   ui->widget->yAxis->setRange(-10, 10);
 
   char* c = new char[inputt.length() + 1];
-  char* tmp = new char[inputt.length() + 45];
-  QString cerr;
+  char* tmp = new char[inputt.length() + 100];
+  QString cerr = inputt;
+  inputt.toLocal8Bit().data();
   for (X = xBegin; X <= xEnd; X += h) {
-    for (int i = 0; i < inputt.length() + 1; i++) {
-      c[i] = inputt.toStdString().c_str()[i];
-    }
+      QString tmpQ = QString::number(X);
+      inputt.replace('x', '(' + tmpQ + ')');
 
-    for (unsigned long i = 0; i < strlen(c); i++) {
-      if (c[i] == 'x' || c[i] == 'X') {
-        cerr = inputt.left(i);
-        cerr += QString::number(X, 'f', 7);
-        cerr += inputt.mid(i + 1);
-      }
-    }
-    for (int i = 0; i < cerr.length() + 1; i++) {
-      tmp[i] = cerr.toStdString().c_str()[i];
-    }
+
+//      tmp = inputt.toStdString();
+
+
+//      Ctmp = str.c_str();
+//      tmp = Ctmp;
+
+          for (int i = 0; i < inputt.length() + 1; i++) {
+            tmp[i] = inputt.toStdString().c_str()[i];
+          }
+          inputt = cerr;
+//          inputt.toLocal16Bit().data();
+//    for (int i = 0; i < inputt.length() + 1; i++) {
+//      c[i] = inputt.toStdString().c_str()[i];
+//    }
+
+//    for (unsigned long i = 0; i < strlen(c); i++) {
+//      if (c[i] == 'x' || c[i] == 'X') {
+//        cerr = inputt.left(i);
+//        cerr += '(';
+//        cerr += QString::number(X, 'f', 7);
+//        cerr += ')';
+//        cerr += inputt.mid(i + 1);
+//        inputt = cerr;
+//        for (int i = 0; i < inputt.length() + 1; i++) {
+//          c[i] = inputt.toStdString().c_str()[i];
+//        }
+//      }
+//    }
+//    for (int i = 0; i < cerr.length() + 1; i++) {
+//      tmp[i] = cerr.toStdString().c_str()[i];
+//    }
     double readtemp = 0;
     preRead(tmp,&readtemp);
     x.push_back(X);
